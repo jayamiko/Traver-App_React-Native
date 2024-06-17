@@ -23,6 +23,8 @@ function HomeScreen({navigation}: any) {
 
   if (initializing) return null;
 
+  console.log('USER: ', user);
+
   function toLoginScreen() {
     navigation.navigate(Page.Login);
   }

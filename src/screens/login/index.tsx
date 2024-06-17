@@ -22,7 +22,7 @@ const LoginScreen = ({navigation}: any) => {
 
         showAlert(SUCCESS, 'Login has been succesfully');
         setTimeout(() => {
-          navigation.navigate(Page.Home);
+          navigation.navigate(Page.Identity);
         }, 3000);
       } catch (error: any) {
         if (error.code === 'auth/email-already-in-use') {
@@ -47,6 +47,7 @@ const LoginScreen = ({navigation}: any) => {
       </View>
       <View style={styles.form}>
         <TextInputField
+          type="email-address"
           label="Email"
           mode="outlined"
           secureText={false}
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   head: {
-    height: 300,
+    height: 200,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

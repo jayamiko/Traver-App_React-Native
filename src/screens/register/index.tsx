@@ -35,7 +35,7 @@ const RegisterScreen = ({navigation}: any) => {
         await user.sendEmailVerification();
         showAlert(SUCCESS, 'Create account has been succesfully');
         setTimeout(() => {
-          navigation.navigate(Page.Login);
+          navigation.navigate(Page.Identity);
         }, 3000);
         return true;
       } catch (error: any) {
@@ -60,6 +60,7 @@ const RegisterScreen = ({navigation}: any) => {
       </View>
       <View style={styles.form}>
         <TextInputField
+          type="email-address"
           label="Email"
           mode="outlined"
           secureText={false}
