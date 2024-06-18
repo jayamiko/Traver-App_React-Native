@@ -96,7 +96,7 @@ const ListItem = ({
         resizeMode="cover"
       />
       <LinearGradient
-        colors={[palette.transparent, palette.transparent, '#191919']}
+        colors={[palette.transparent, palette.transparent, palette.dark]}
         style={styles.gradientView}>
         <View style={styles.bottomContainer}>
           <LogoAnimated URL={require('../../assets/icons/traver-white.png')} />

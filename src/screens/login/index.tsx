@@ -13,7 +13,7 @@ const LoginScreen = ({navigation}: any) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const animateDuration = 2000; // a minute
+  const animateDuration = 2000; // two minutes
 
   function goToRegisterAccount() {
     navigation.navigate(Page.Register);
@@ -117,6 +117,8 @@ const LoginScreen = ({navigation}: any) => {
           onPress={login}
           disabled={!email || !password ? true : false}
         />
+
+        {/* SOCIAL MEDIA */}
         <Animated.View
           entering={FadeInDown.delay(600).duration(animateDuration).springify()}
           style={styles.socialMediaContainer}>

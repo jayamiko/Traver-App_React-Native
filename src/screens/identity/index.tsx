@@ -45,8 +45,6 @@ const IdentityScreen = ({navigation}: any) => {
     setFileResponse(null);
   }
 
-  console.log(fileResponse?.uri);
-
   async function profileSaved() {
     if (shouldEnableButton()) {
       await user

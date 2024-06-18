@@ -7,12 +7,16 @@ import auth from '@react-native-firebase/auth';
 import {Page} from '../../constants/Page';
 import showAlert, {DANGER, SUCCESS, WARNING} from '../../commons/showAlert';
 import {AlertNotificationRoot} from 'react-native-alert-notification';
-import Logo from '../../components/icons/Logo';
+import Logo, {LogoAnimated} from '../../components/icons/Logo';
+import ButtonBack from '../../components/buttons/ButtonBack';
+import Animated, {FadeInDown, FadeInUp} from 'react-native-reanimated';
 
 const RegisterScreen = ({navigation}: any) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+
+  const animateDuration = 200; // two minutes
 
   const message = {
     emailExist: 'The email address is already in use by another account.',
@@ -56,10 +60,42 @@ const RegisterScreen = ({navigation}: any) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.head}>
-        <Logo URL={require('../../assets/icons/traver-black.png')} />
+      <Image
+        style={styles.background}
+        source={require('../../assets/backgrounds/background-orange.png')}
+      />
+
+      <View style={styles.lights}>
+        <Animated.Image
+          style={styles.light}
+          source={require('../../assets/utils/light.png')}
+          entering={FadeInUp.delay(200).duration(animateDuration).springify()}
+        />
+        <Animated.Image
+          style={styles.light}
+          source={require('../../assets/utils/light.png')}
+          entering={FadeInUp.delay(400).duration(animateDuration).springify()}
+        />
       </View>
-      <View style={styles.form}>
+
+      {/* HEADER */}
+      <Animated.View
+        entering={FadeInDown.duration(animateDuration).springify()}
+        style={styles.head}>
+        <View style={styles.buttonBack}>
+          <ButtonBack navigation={navigation} />
+        </View>
+        <View style={styles.header}>
+          <LogoAnimated
+            entering={FadeInDown.duration(animateDuration).springify()}
+            URL={require('../../assets/icons/traver-black.png')}
+          />
+          <Text style={styles.headerText}>Create Your Account Here</Text>
+        </View>
+      </Animated.View>
+      <Animated.View
+        entering={FadeInDown.delay(200).duration(animateDuration).springify()}
+        style={styles.form}>
         <TextInputField
           type="email-address"
           label="Email"
@@ -85,15 +121,38 @@ const RegisterScreen = ({navigation}: any) => {
         {confirmPassword && password !== confirmPassword && (
           <Text style={styles.errorText}>Password is not match</Text>
         )}
-      </View>
-      <View style={styles.btnContainer}>
+      </Animated.View>
+      <Animated.View
+        entering={FadeInDown.delay(400).duration(animateDuration).springify()}
+        style={styles.btnContainer}>
         <ButtonOpacity
           label="Submit"
           color={palette.orange}
           borderColor={palette.orange}
           onPress={createAccount}
         />
-      </View>
+      </Animated.View>
+
+      {/* SOCIAL MEDIA */}
+      <Animated.View
+        entering={FadeInDown.delay(600).duration(animateDuration).springify()}
+        style={styles.socialMediaContainer}>
+        <Text>Or create account using social media</Text>
+        <View style={styles.socialMedia}>
+          <Image
+            style={styles.socialMediaIcon}
+            source={require('../../assets/icons/Facebook.png')}
+          />
+          <Image
+            style={styles.socialMediaIcon}
+            source={require('../../assets/icons/Twitter.png')}
+          />
+          <Image
+            style={styles.socialMediaIcon}
+            source={require('../../assets/icons/Google.png')}
+          />
+        </View>
+      </Animated.View>
 
       <AlertNotificationRoot>
         <></>
@@ -108,14 +167,47 @@ const styles = StyleSheet.create({
     height: '100%',
     paddingHorizontal: 20,
   },
+  background: {
+    position: 'absolute',
+    width: 400,
+    height: 680,
+  },
+  lights: {
+    width: 400,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    position: 'absolute',
+  },
+  light: {
+    width: 65,
+    height: 160,
+  },
   head: {
-    height: 300,
+    height: 280,
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  buttonBack: {
+    width: '100%',
+    marginTop: 80,
+  },
+  header: {
+    width: '100%',
+    height: 150,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: palette.dark,
+    marginTop: 24,
+  },
   form: {
-    gap: 14,
+    gap: 20,
   },
   field: {
     borderRadius: 24,
@@ -123,7 +215,8 @@ const styles = StyleSheet.create({
   btnContainer: {
     display: 'flex',
     justifyContent: 'flex-end',
-    marginTop: 20,
+    marginTop: 24,
+    marginBottom: 100,
   },
   button: {
     backgroundColor: palette.white,
@@ -132,6 +225,22 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     padding: 14,
+  },
+  socialMediaContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: 40,
+  },
+  socialMedia: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 28,
+    marginVertical: 20,
+  },
+  socialMediaIcon: {
+    width: 55,
+    height: 55,
   },
   errorText: {
     fontWeight: 'bold',
