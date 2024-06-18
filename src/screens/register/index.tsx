@@ -7,6 +7,7 @@ import auth from '@react-native-firebase/auth';
 import {Page} from '../../constants/Page';
 import showAlert, {DANGER, SUCCESS, WARNING} from '../../commons/showAlert';
 import {AlertNotificationRoot} from 'react-native-alert-notification';
+import Logo from '../../components/icons/Logo';
 
 const RegisterScreen = ({navigation}: any) => {
   const [email, setEmail] = useState<string>('');
@@ -56,7 +57,7 @@ const RegisterScreen = ({navigation}: any) => {
   return (
     <View style={styles.container}>
       <View style={styles.head}>
-        <Image source={require('../../assets/icons/traver-icon.png')} />
+        <Logo URL={require('../../assets/icons/traver-black.png')} />
       </View>
       <View style={styles.form}>
         <TextInputField
