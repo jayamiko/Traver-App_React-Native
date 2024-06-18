@@ -4,6 +4,7 @@ import Animated from 'react-native-reanimated';
 
 type Props = {
   URL: ImageProps;
+  entering?: any;
 };
 
 function Logo(props: Props) {
@@ -11,7 +12,7 @@ function Logo(props: Props) {
 }
 
 export function LogoAnimated(props: Props) {
-  return <Animated.Image source={props.URL} />;
+  return <Animated.Image source={props.URL} entering={props.entering} />;
 }
 
 export default Logo;
