@@ -9,19 +9,20 @@ import {Page} from './src/constants/Page';
 import HomeScreen from './src/screens/home';
 import IdentityScreen from './src/screens/identity';
 import OnboardScreen from './src/screens/onboard';
+import PageLayout from './src/components/containers/PageLayout';
 
 const Stack = createNativeStackNavigator();
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  // const backgroundStyle = {
+  //   backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  // };
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName={Page.Onboard}>
+      <Stack.Navigator initialRouteName={Page.Home}>
         <Stack.Screen
           name={Page.Onboard}
           component={OnboardScreen}

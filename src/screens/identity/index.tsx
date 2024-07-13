@@ -9,6 +9,7 @@ import showAlert, {DANGER, SUCCESS} from '../../commons/showAlert';
 import ButtonBack from '../../components/buttons/ButtonBack';
 import {launchImageLibrary} from 'react-native-image-picker';
 import sizeInBytes from '../../commons/sizeInBytes';
+import ImageComponent from '../../components/icons/ImageComponent';
 
 const IdentityScreen = ({navigation}: any) => {
   const [fullName, setFullName] = useState<string>('');
@@ -78,16 +79,7 @@ const IdentityScreen = ({navigation}: any) => {
         />
         {fileResponse && (
           <View style={styles.preview}>
-            <Image
-              width={75}
-              height={75}
-              style={{
-                borderRadius: 50,
-              }}
-              source={{
-                uri: fileResponse.uri,
-              }}
-            />
+            <ImageComponent size={75} url={fileResponse.uri} radius={50} />
             <View style={styles.previewInfo}>
               <Text style={styles.info}>{fileResponse.fileName}</Text>
               <Text style={styles.info}>{fileResponse.type}</Text>

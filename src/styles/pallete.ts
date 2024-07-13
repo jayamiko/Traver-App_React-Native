@@ -5,5 +5,6 @@ export const palette = {
   dark: '#191919',
   grey: '#BABABA',
   'light-grey': '#D0D0D0',
+  'white-grey': '#FAFAFA',
   orange: '#FCD240',
 };
