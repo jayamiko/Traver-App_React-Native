@@ -1,23 +1,39 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, ImageSourcePropType} from 'react-native';
 
 type Props = {
-  size: number;
-  url: string;
+  width: number;
+  height: number;
+  url: any;
+  source: 'internal' | 'external';
   radius?: number;
 };
 
+type ExtSourceProps = {
+  uri: string;
+};
+
+export const SourceType = {
+  Internal: 'internal',
+  External: 'external',
+};
+
 function ImageComponent(props: Props) {
+  const src = props.source;
+  const url = props.url;
+
+  const externalSource: ExtSourceProps = {
+    uri: url,
+  };
+
   return (
     <Image
-      width={props.size}
-      height={props.size}
+      width={props.width}
+      height={props.height}
       style={{
         borderRadius: props.radius,
       }}
-      source={{
-        uri: props.url,
-      }}
+      source={src === SourceType.External ? externalSource : url}
     />
   );
 }

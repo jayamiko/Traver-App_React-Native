@@ -7,4 +7,5 @@ export const palette = {
   'light-grey': '#D0D0D0',
   'white-grey': '#FAFAFA',
   orange: '#FCD240',
+  gold: '#FFD700',
 };

@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import {palette} from '../../styles/pallete';
 
 type Props = {
@@ -7,7 +7,11 @@ type Props = {
 };
 
 function PageLayout(props: Props) {
-  return <View style={styles.container}>{props.children}</View>;
+  return (
+    <View style={styles.container}>
+      <ScrollView>{props.children}</ScrollView>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -16,7 +20,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     height: '100%',
     paddingTop: 60,
-    paddingHorizontal: 20,
   },
 });
 

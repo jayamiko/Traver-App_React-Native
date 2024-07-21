@@ -12,7 +12,9 @@ function CategoryTag(props: Props) {
   const categoryName = props.item.category_name;
   const iconURL = props.item.icon_uri;
   return (
-    <View style={[styles.categoryBox, id !== 1 && styles.marginHorizontal]}>
+    <View
+      key={id}
+      style={[styles.categoryBox, id !== 1 && styles.marginHorizontal]}>
       <View style={styles.iconBox}>
         <Image source={iconURL} alt={categoryName} style={styles.icon} />
       </View>
